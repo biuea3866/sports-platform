@@ -1,0 +1,76 @@
+spring:
+  datasource:
+    write:
+      jdbc-url: jdbc:mysql://${MYSQL_HOST}:3306/${MYSQL_NAME}?zeroDateTimeBehavior=convertToNull
+      username: ${MYSQL_USER}
+      password: ${MYSQL_PASSWORD}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      maximum-pool-size: 10
+      minimum-idle: 20
+      max-lifetime: 598000
+      write.idle-timeout: 300000
+    read:
+      jdbc-url: jdbc:mysql://${MYSQL_HOST_RO}:3306/${MYSQL_NAME}?zeroDateTimeBehavior=convertToNull
+      username: ${MYSQL_USERNAME}
+      password: ${MYSQL_KEY}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      connection-timeout: 5000
+      maximum-pool-size: 80
+      minimum-idle: 20
+      max-lifetime: 598000
+      idle-timeout: 300000
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      database: mysql
+      properties:
+        hibernate:
+          query:
+            plan_cache_max_size: 256
+            plan_parameter_metadata_max_size: 16
+          default_batch_fetch_size: 30
+          jdbc.time_zone: UTC
+  # RabbitMQ Settings
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: 5672
+    username: ${RABBITMQ_USER}
+    password: ${RABBITMQ_KEY}
+    virtual-host: ${RABBITMQ_VIRTUALHOST}
+  # Kafka Settings
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST}
+    properties:
+      security.protocol: SASL_SSL
+      sasl:
+        mechanism: SCRAM-SHA-512
+        jaas:
+          config: org.apache.kafka.common.security.scram.ScramLoginModule required username="${KAFKA_USER}" password="${KAFKA_KEY}";
+# Mongo Settings
+mongodb:
+  primary:
+    username: ${MONGODB_USER}
+    password: ${MONGODB_KEY}
+    database: ${MONGODB_NAME}
+    authentication-database: admin
+    host: ${MONGODB_HOST}
+    port: 27017
+# Jwt Settings?
+jwt:
+  key: ${JWT_KEY}
+# Serializer Settings
+serializer:
+  key: ${SERIALIZER_KEY}
+  salt: ${SERIALIZER_SALT}
+# Env Settings
+server:
+  env: ${ENV}
+  shutdown: graceful
+# AWS Settings
+cloud:
+  aws:
+    region:
+      static: ap-northeast-2
+      stack:
+        auto: false
