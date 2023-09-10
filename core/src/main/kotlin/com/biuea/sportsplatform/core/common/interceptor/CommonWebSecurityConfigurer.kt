@@ -31,7 +31,6 @@ class CommonWebSecurityConfigurer(
     }
 
     @Bean
-    @Suppress("LongMethod")
     fun corsConfigurationSource(): CorsConfigurationSource {
         val source = UrlBasedCorsConfigurationSource()
 

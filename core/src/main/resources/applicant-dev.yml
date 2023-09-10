@@ -67,10 +67,3 @@ serializer:
 server:
   env: ${ENV}
   shutdown: graceful
-# AWS Settings
-cloud:
-  aws:
-    region:
-      static: ap-northeast-2
-      stack:
-        auto: false

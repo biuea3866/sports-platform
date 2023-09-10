@@ -44,20 +44,19 @@ java {
 }
 
 allprojects {
-    group = "com.biuea"
+    group = "com.biuea.sportsplatform"
     version = "1.0.0"
 
     repositories {
         mavenCentral()
         mavenLocal()
-//        maven {
-//            url =
-//                uri("https://maven.pkg.github.com/doodlincorp/maven-artifact")
-//            credentials {
-//                username = System.getenv("GITHUB_USERNAME")
-//                password = System.getenv("GITHUB_TOKEN")
-//            }
-//        }
+        maven {
+            url = uri("https://maven.pkg.github.com/biuea3866/sports-platform-file-server")
+            credentials {
+                username = System.getenv("GITHUB_USERNAME")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
 }
 
@@ -268,6 +267,7 @@ subprojects {
         // pools
         implementation("org.apache.commons:commons-pool2:$commonsPoolVersion")
 
+        implementation("com.biuea.sportsplatform.file:sdk:1.0.2")
         // Test Dependencies
         testImplementation("io.github.serpro69:kotlin-faker:$kotlinFakerVersion")
         testImplementation("org.amshove.kluent:kluent:$kluentVersion")
